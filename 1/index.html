@@ -7,6 +7,69 @@
   <title>React Lesson</title>
 </head>
 <body>
+  <main>
+    <div class="main">
+      <div class="main__container">
+        <div class="btn btn__left btn__left-active">left</div>
+        <div class="btn btn__value">..</div>
+        <div class="btn btn__right btn__right-active">right</div>
+      </div>
+      <div class="main__circle">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </main>
+
+  <style>
+  * {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+    .main {
+      margin: 20% 30%;
+    }
+    .main__container {
+      display: flex;
+      flex-direction: row;
+    }
+    .btn {
+      border: 2px solid black;
+      border-radius: 5px;
+      margin: 0 auto;
+      padding: 10%;
+      /* width: 50%; */
+    }
+    .btn__left,
+    .btn__right {
+      background: red;
+      cursor: pointer;
+    }
+    .btn__left:active,
+    .btn__right:active {
+      background: rgb(179, 53, 53);
+      position: relative;
+      bottom: -2px;
+      cursor: pointer;
+    }
+    .btn__left:hover,
+    .btn__right:hover {
+      background: rgb(179, 53, 53);
+      cursor: pointer;
+    }
+    .btn__value {
+      background: rgb(112, 112, 206);
+    }
+    .circle {
+      border: 3px solid red;
+      border-radius: 50%;
+      margin: 10px;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
 
 </body>
 </html>
