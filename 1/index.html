@@ -7,16 +7,14 @@
   <title>React Lesson</title>
 </head>
 <body>
-  <main>
-    <div class="main">
-      <div class="main__container">
-        <div class="btn btn__left btn__left-active">left</div>
-        <div class="btn btn__value">..</div>
-        <div class="btn btn__right btn__right-active">right</div>
-      </div>
-      <div class="main__circle">
-        <div class="circle"></div>
-      </div>
+  <main class="main">
+    <div class="main__content">
+      <div class="btn btn__left">left</div>
+      <div class="btn btn__value"><span class="">5</span></div>
+      <div class="btn btn__right">right</div>
+    </div>
+    <div class="main__circle">
+      <div class="circle"></div>
     </div>
   </main>
 
@@ -31,45 +29,61 @@
     .main {
       margin: 20% 30%;
     }
-    .main__container {
+    .main__content {
+      background: rgb(117, 140, 158);
+      padding: 10% 5% 5%;
+      border-radius: 10px 10px 0 0;
+
       display: flex;
       flex-direction: row;
+    }
+    .main__circle {
+      background: rgb(117, 140, 158);
+      border-radius: 0 0 10px 10px;
+      padding: 0 5% 5%;
+
+      display: flex;
+      justify-content: center;
     }
     .btn {
       border: 2px solid black;
       border-radius: 5px;
       margin: 0 auto;
       padding: 10%;
-      /* width: 50%; */
     }
     .btn__left,
     .btn__right {
-      background: red;
-      cursor: pointer;
-    }
-    .btn__left:active,
-    .btn__right:active {
-      background: rgb(179, 53, 53);
-      position: relative;
-      bottom: -2px;
-      cursor: pointer;
-    }
-    .btn__left:hover,
-    .btn__right:hover {
-      background: rgb(179, 53, 53);
+      background: rgb(98, 85, 128);
+      color: rgb(141, 141, 165);
       cursor: pointer;
     }
     .btn__value {
-      background: rgb(112, 112, 206);
+      position: relative;
+      background: rgb(141, 141, 165);
+      bottom: 20px;
     }
     .circle {
-      border: 3px solid red;
+      border: 3px solid rgb(108, 65, 143);
       border-radius: 50%;
       margin: 10px;
       width: 100px;
       height: 100px;
+      transition: .3s;
+    }
+
+    .btn__left-active,
+    .btn__right-active {
+      background: rgb(108, 100, 126);
+      position: relative;
+      bottom: -2px;
+      cursor: pointer;
+    }
+
+    .btn__gray {
+      background: gray;
+      cursor: default;
     }
   </style>
-
+  <script src="./script.js"></script>
 </body>
 </html>
