@@ -1,89 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
   <title>React Lesson</title>
-</head>
-<body>
-  <main class="main">
-    <div class="main__content">
-      <div class="btn btn__left">left</div>
-      <div class="btn btn__value"><span class="">5</span></div>
-      <div class="btn btn__right">right</div>
-    </div>
-    <div class="main__circle">
-      <div class="circle"></div>
-    </div>
-  </main>
 
+  <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
-  * {
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-    .main {
-      margin: 20% 30%;
-    }
-    .main__content {
-      background: rgb(117, 140, 158);
-      padding: 10% 5% 5%;
-      border-radius: 10px 10px 0 0;
-
-      display: flex;
-      flex-direction: row;
-    }
-    .main__circle {
-      background: rgb(117, 140, 158);
-      border-radius: 0 0 10px 10px;
-      padding: 0 5% 5%;
-
-      display: flex;
-      justify-content: center;
-    }
-    .btn {
-      border: 2px solid black;
-      border-radius: 5px;
-      margin: 0 auto;
-      padding: 10%;
-    }
-    .btn__left,
-    .btn__right {
-      background: rgb(98, 85, 128);
-      color: rgb(141, 141, 165);
-      cursor: pointer;
-    }
-    .btn__value {
-      position: relative;
-      background: rgb(141, 141, 165);
-      bottom: 20px;
-    }
-    .circle {
-      border: 3px solid rgb(108, 65, 143);
+    .app-circle {
       border-radius: 50%;
-      margin: 10px;
-      width: 100px;
-      height: 100px;
-      transition: .3s;
-    }
-
-    .btn__left-active,
-    .btn__right-active {
-      background: rgb(108, 100, 126);
-      position: relative;
-      bottom: -2px;
-      cursor: pointer;
-    }
-
-    .btn__gray {
-      background: gray;
-      cursor: default;
+      border: 1px solid red;
+      transition: width 0.3s, height 0.3s;
     }
   </style>
-  <script src="./script.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    function MyApp() {
+
+      let [ value, setValue ] = React.useState(5);
+      let size = value * 20 + 'px';
+      let circleStyles = { width: size, height: size };
+      let canDec = value > 1;
+      let canInc = value < 10;
+
+      function increase() {
+        if(canInc) {
+        setValue(value + 1)
+        }
+      }
+
+      function decrease() {
+        if(canDec) {
+        setValue(value - 1)
+        }
+      }
+
+      return <div className="container my-2">
+        <div>
+          <button onClick={decrease} className="btn btn-danger app-decrease" disabled={!canDec}>-</button>
+          <strong className="app-value mx-2">{ value }</strong>
+          <button onClick={increase} className="btn btn-success app-increase" disabled={!canInc}>+</button>
+        </div>
+        <div className="app-circle my-3" style={circleStyles}></div>
+        {
+          (!canDec  || !canInc) &&
+          <div className="alert alert-danger my-3">
+            {!canDec && 'Minimum now!'}
+            {!canInc && 'Maximum now!'}
+          </div>
+        }
+      </div>
+    }
+
+    const container = document.getElementById('root');
+    const root = ReactDOM.createRoot(container);
+    root.render(<MyApp />);
+  </script>
 </body>
+
 </html>
