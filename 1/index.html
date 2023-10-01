@@ -8,6 +8,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
   <title>React Lesson</title>
 
+  <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
   <style>
     .app-circle {
       border-radius: 50%;
@@ -18,43 +22,38 @@
 </head>
 
 <body>
-  <div class="container my-2">
-    <div>
-      <button class="btn btn-danger app-decrease">-</button>
-      <strong class="app-value mx-2"></strong>
-      <button class="btn btn-success app-increase">+</button>
-    </div>
-    <div class="app-circle my-3"></div>
-  </div>
+  <div id="root"></div>
+  <script type="text/babel">
+    function MyApp() {
+      let [ value, setValue ] = React.useState(5);
+      let size = value * 20 + 'px';
+      let circleStyles = { width: size, height: size };
+      let canDec = value > 1;
+      let canInc = value < 10;
+
+      function increase() {
+        setValue(value + 1)
+      }
+
+      function decrease() {
+        setValue(value - 1)
+      }
+
+      return <div className="container my-2">
+        <div>
+          <button onClick={decrease} className="btn btn-danger app-decrease" disabled={!canDec}>-</button>
+          <strong className="app-value mx-2">{value}</strong>
+          <button onClick={increase} className="btn btn-success app-increase" disabled={!canInc}>+</button>
+        </div>
+        <div className="app-circle my-3" style={circleStyles}></div>
+      </div>
+    }
+
+  const container = document.getElementById('root');
+  const root = ReactDOM.createRoot(container);
+  root.render(<MyApp />)
+  </script>
 </body>
 
-<script>
-  let value = 5;
-  const valueToPx = 20;
-  const appCircle = document.querySelector('.app-circle');
-  const appValue = document.querySelector('.app-value');
 
-  function applyValue(value) {
-    let size = value * valueToPx;
-    appCircle.style.width = size + 'px';
-    appCircle.style.height = size + 'px';
-    appValue.innerHTML = value;
-
-  }
-
-  document.querySelector('.app-decrease').addEventListener('click', () => {
-    if(value > 1) {
-      value--;
-      applyValue(value)
-    }
-  })
-
-  document.querySelector('.app-increase').addEventListener('click', () => {
-    if(value < 10) {
-      value++;
-      applyValue(value)
-    }
-  })
-  applyValue(value)
-</script>
 </html>
