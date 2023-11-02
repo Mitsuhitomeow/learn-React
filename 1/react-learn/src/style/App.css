@@ -3,10 +3,18 @@ button {
   background: #FFFFFF;
   color: black;
 
-  border: 1px solid;
+  border: 1px solid #FFFFFF;
   border-radius: 2px;
 
   padding: 2px;
+}
+
+input {
+  background: grey;
+}
+
+input::placeholder {
+  color: black
 }
 
 * {
