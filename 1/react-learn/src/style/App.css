@@ -73,9 +73,9 @@ main .item__btn {
   transform: scale(1.3);
 }
 
-aside form input:not([type="checkbox"]),
-aside form textarea,
-aside form button {
+form input:not([type="checkbox"]),
+form textarea,
+form button {
   background: #202020;
   color: #ffffff;
   border: 0;
@@ -85,21 +85,21 @@ aside form button {
   padding: 5%;
   margin-bottom: 1%;
 }
-aside form textarea {
+form textarea {
   margin-bottom: 0;
 }
 
-aside form input::placeholder,
-aside form textarea::placeholder,
-aside form button::placeholder {
+form input::placeholder,
+form textarea::placeholder,
+form button::placeholder {
   color: #c7c7c7;
 }
 
-.user__discription-inputs {
+.user__discription_inputs {
   margin-bottom: 2%;
 }
 
-aside form label {
+form label {
   color: #c7c7c7;
 }
 
@@ -109,11 +109,29 @@ aside form label {
   width: 100%;
 }
 
-aside form button {
+form button {
   margin-top: 3%;
   width: 100%;
   cursor: pointer;
   transition: .5s ease;
+}
+
+.item form {
+  margin-top: 2%;
+}
+
+.item form input,
+.item form textarea,
+.item form button {
+  background: rgb(62, 85, 105);
+}
+
+.item form label {
+  margin-top: 2%;
+}
+
+.item form .user__discription-label {
+  align-items: flex-end;
 }
 
 
@@ -126,6 +144,11 @@ aside form button {
     background: #000000;
     color: #c7c7c7;
     transform: scale(1.05);
+  }
+
+  .item form button:hover {
+    background: rgb(34, 52, 68);
+    transform: scale(1.02);
   }
 }
 

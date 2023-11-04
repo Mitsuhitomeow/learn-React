@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 import Users from "./components/Users";
 import FormAddUser from "./components/FormAddUser";
-import "./style/App.css"
+import "./style/app.css"
 
 class App extends React.Component {
   constructor(props) {
@@ -27,8 +27,6 @@ class App extends React.Component {
         }
       ]
     }
-    this.addUser = this.addUser.bind(this)
-    this.deleteUser = this.deleteUser.bind(this)
   }
 
 
@@ -37,10 +35,10 @@ class App extends React.Component {
       <div className="name">
         <Header title="Список пользователей" />
         <main>
-          <Users users={this.state.users} onDelete={this.deleteUser}/>
+          <Users users={this.state.users} onEdit={this.editUser.bind(this)} onDelete={this.deleteUser.bind(this)}/>
         </main>
         <aside>
-          <FormAddUser onAdd={this.addUser} />
+          <FormAddUser onAdd={this.addUser.bind(this)} />
         </aside>
       </div>
     )
@@ -53,6 +51,15 @@ class App extends React.Component {
 
   deleteUser(id) {
     this.setState({ users: this.state.users.filter( el => el.id !== id)})
+  }
+
+  editUser(user) {
+    const allUsers = this.state.users
+    allUsers[user.id - 1] = user
+
+    this.setState({ users: []}, () => {
+      this.setState({ users: [...allUsers] })
+    })
   }
 
 }
