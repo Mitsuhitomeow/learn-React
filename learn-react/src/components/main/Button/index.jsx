@@ -1,12 +1,9 @@
 import './Button.css'
 
-export default function Button({ children }) {
-  function handleClick() {
-    console.log('dsd click')
-  }
+export default function Button({ children, onClick, isActive }) {
 
   return (
-    <button className='button' onClick={handleClick}>
+    <button className={isActive ? 'button active' : 'button'} onClick={onClick}>
       {children}
     </button>
   )
